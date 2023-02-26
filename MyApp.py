@@ -10,6 +10,7 @@ import time
 
 
 # Define function to read Excel file
+@st.cache(allow_output_mutation=True)
 def read_excel_file(file):
     df = pd.read_excel(file)
     return df
