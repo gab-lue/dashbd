@@ -10,32 +10,34 @@ import time
 
 
 # Define function to read Excel file
-@st.cache(allow_output_mutation=True)
-def read_excel_file(file):
-    df = pd.read_excel(file)
-    return df
+
+
+
 
 # Define Streamlit app
 def app():
-    # Add file uploader widget
-    with st.sidebar:
-        file = st.file_uploader("Upload Excel file", type=["xlsx"])
-    
-
-    # Check if file is uploaded
-    if file is not None:
-        # Read Excel file
-        
-        
-        # Add code to execute after file is uploaded
-        
-        #read df and split it into 4 lists
-        df = pd.read_excel(file, engine='openpyxl',
+    @st.cache(allow_output_mutation=True)
+    def read_excel_file(filename):
+        df = pd.read_excel(filename, engine='openpyxl',
                                    sheet_name='Ranking',
                                    skiprows=4,
                                    usecols='C:M',
                                    nrows=1000,
                                    header=None)
+        return df   
+    # Add file uploader widget
+    with st.sidebar:
+        file = st.file_uploader("Upload Excel file", type=["xlsx"])
+    
+    
+    # Check if file is uploaded
+    if file is not None:
+        # Read Excel file
+        file_contents = file.getvalue()        
+        
+    
+        #read df and split it into 4 lists
+        df = read_excel_file(file_contents)
         
         #4 new dfs
         df_meetings = df.iloc[0:32,0:2]
@@ -82,6 +84,7 @@ def app():
                         )
         
         #show plots
+        
         st.plotly_chart(termine)
         st.plotly_chart(abgehalten)
         st.plotly_chart(vereinbarungen)
@@ -104,5 +107,6 @@ st.set_page_config(page_title="Unit 1 Dashboard",
 #überschrift
 st.header("Alle Wichtigen Zahlen")
 st.subheader("Top Performer:")   
+
 app()
 
