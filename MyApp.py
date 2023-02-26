@@ -7,7 +7,7 @@ import plotly.figure_factory as ff
 from io import StringIO
 import os.path
 import time
-from ipyvizzu import Chart, Data, Config
+
 
 # Define function to read Excel file
 
