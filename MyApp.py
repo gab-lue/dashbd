@@ -73,7 +73,7 @@ def app():
                         y=6,
                         color=6,
                         orientation="v",
-                        hover_name=5
+                        hover_name=6
                         )
 
     vereinbarungen = px.bar(df_agreement,
