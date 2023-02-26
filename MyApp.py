@@ -11,11 +11,13 @@ import time
 
 # Define function to read Excel file
 
-
-
+#global
+data = None
 
 # Define Streamlit app
 def app():
+    global data
+    
     @st.cache(allow_output_mutation=True)
     def read_excel_file(filename):
         df = pd.read_excel(filename, engine='openpyxl',
@@ -26,24 +28,27 @@ def app():
                                    header=None)
         return df   
     # Add file uploader widget
+    
     with st.sidebar:
         file = st.file_uploader("Upload Excel file", type=["xlsx"])
     
-    
     # Check if file is uploaded
+    print(data)
     if file is not None:
         # Read Excel file
-        file_contents = file.getvalue()        
-        
-    
         #read df and split it into 4 lists
-        df = read_excel_file(file_contents)
-        
+        data = read_excel_file(file)
+        data.info()
+        st.write("file loading")
+    
+    
+       
+    if data is not None:
         #4 new dfs
-        df_meetings = df.iloc[0:32,0:2]
-        df_held = df.iloc[0:32,3:5]
-        df_agreement = df.iloc[0:32,6:8]
-        df_turnover = df.iloc[0:32,9:11]
+        df_meetings = data.iloc[0:32,0:2]
+        df_held = data.iloc[0:32,3:5]
+        df_agreement = data.iloc[0:32,6:8]
+        df_turnover = data.iloc[0:32,9:11]
          
          #make plots
         termine = px.bar(df_meetings,
@@ -89,6 +94,7 @@ def app():
         st.plotly_chart(abgehalten)
         st.plotly_chart(vereinbarungen)
         st.plotly_chart(turnover)
+            
     else:
         # Add message to tell user to upload file
         st.write("Please upload an Excel file.")
