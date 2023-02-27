@@ -140,7 +140,7 @@ st.set_page_config(page_title="Unit 1 Dashboard",
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', 
                 unsafe_allow_html=True)
-st.header("Alle Wichtigen Zahlen für diesen Monat")
+st.header("Aktueller Stand der Zahlen / PCS")
      
 st.sidebar.header('Dashboard `version1`')
 
