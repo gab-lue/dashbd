@@ -112,6 +112,7 @@ def app():
             
                      barmode="relative")
         fig.update_layout(showlegend=False)
+        fig.update_layout()
         st.write(fig.show())
         #st.markdown('### abgehaltene Termine')
         st.plotly_chart(abgehalten,theme="streamlit")
