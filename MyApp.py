@@ -108,7 +108,7 @@ def app():
                      opacity=0.8,
                      hover_name=3,
                      hover_data=(),
-                     width=200,
+                     width=500,
                      
                      barmode="relative")
         
