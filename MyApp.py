@@ -109,11 +109,10 @@ def app():
                      hover_name=3,
                      hover_data=(),
                      width=650,
-                     
+            
                      barmode="relative")
-        
-        st.write(fig)
         fig.update_layout(showlegend=False)
+        st.write(fig)
         #st.markdown('### abgehaltene Termine')
         st.plotly_chart(abgehalten,theme="streamlit")
     with c2:
@@ -141,7 +140,7 @@ st.set_page_config(page_title="Unit 1 Dashboard",
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', 
                 unsafe_allow_html=True)
-st.header("Aktueller Stand der Zahlen - PCS Monat Februar")
+st.header("Aktueller Stand der Zahlen / PCS Monat Februar")
      
 st.sidebar.header('Dashboard `version1`')
 
