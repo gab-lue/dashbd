@@ -108,7 +108,7 @@ def app():
                      opacity=0.8,
                      hover_name=3,
                      hover_data=(),
-                     width=500,
+                     width=700,
                      
                      barmode="relative")
         
@@ -141,7 +141,7 @@ st.set_page_config(page_title="Unit 1 Dashboard",
 with open('style.css') as f:
     st.markdown(f'<style>{f.read()}</style>', 
                 unsafe_allow_html=True)
-st.header("Aktueller Stand der Zahlen für PCS im Monat Februar")
+st.header("Aktueller Stand der Zahlen - PCS Monat Februar")
      
 st.sidebar.header('Dashboard `version1`')
 
