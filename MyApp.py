@@ -154,6 +154,9 @@ with open('style.css') as f:
 st.header("Aktueller Stand der Zahlen / PCS Monat März")
      
 st.sidebar.header('Dashboard `version1`')
+with st.sidebar:
+    st.write("written and maintained by gabriel lüpke gal@jsdeutschland.de")
+
 
 #rows shortcuts
 
