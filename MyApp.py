@@ -7,6 +7,7 @@ import plotly.figure_factory as ff
 from io import StringIO
 import os.path
 import time
+from datetime import datetime
 
 
 # Define function to read Excel file
@@ -26,6 +27,14 @@ def app():
                                    usecols='C:M',
                                    nrows=1000,
                                    header=None)
+        return df  
+    
+    def read_excel_file_date(filename):
+        df = pd.read_excel(filename, engine='openpyxl',
+                                   sheet_name='Ranking',
+                                   nrows=1000,
+                                   header=None
+                                   )
         return df   
     # Add file uploader widget
     
@@ -38,11 +47,14 @@ def app():
         # Read Excel file
         #read df and split it into 4 lists
     data = read_excel_file("Unit 1 - Ranking.xlsx")
+    date = read_excel_file_date("Unit 1 - Ranking.xlsx")
     
     
-       
     #if data is not None:
         #4 new dfs
+    dates = date.iloc[0:1,1:2].to_string(index=False,header=None)
+    print(str(dates))
+    
     df_meetings = data.iloc[0:32,0:2]
     df_held = data.iloc[0:32,3:5]
     df_agreement = data.iloc[0:32,6:8]
@@ -52,10 +64,10 @@ def app():
     name_agree,value_agree = df_agreement.at[0,8],df_agreement.at[0,9]
     name_turn,value_turn = df_turnover.at[0,11],df_turnover.at[0,12]
   
-    st.markdown('### Bestleistungen')
+    st.write("Letzes Update am:", dates)
     col1,col2,col3,col4 = st.columns(4)
-    col1.metric("gebuchte Termine:crown:",str(name_meeting),str(value_meeting))
-    col2.metric("abgehaltene Termine:crown:",str(name_held),str(value_held))
+    col1.metric("gebuchte Termine :crown:",str(name_meeting),str(value_meeting))
+    col2.metric("abgehaltene Termine :crown:",str(name_held),str(value_held))
     col3.metric("Vereinbarungen:crown:",str(name_agree),str(value_agree))
     col4.metric("Umsatz:crown:",str(name_turn),str(value_turn))  
          
