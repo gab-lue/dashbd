@@ -46,8 +46,8 @@ def app():
     #if file is not None:
         # Read Excel file
         #read df and split it into 4 lists
-    data = read_excel_file("Unit 1 - Ranking.xlsx")
-    date = read_excel_file_date("Unit 1 - Ranking.xlsx")
+    data = read_excel_file("Unit 1 - Ranking (PCS).xlsx")
+    date = read_excel_file_date("Unit 1 - Ranking (PCS).xlsx")
     
     
     #if data is not None:
